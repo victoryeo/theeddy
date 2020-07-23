@@ -36,9 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.home {
-     width: 100%;
-     height: 115%;
-     background-size:contain;
-}
