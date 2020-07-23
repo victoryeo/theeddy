@@ -5,7 +5,6 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Typography from '@material-ui/core/Typography';
 import mainLogo from '../assets/eddy01.jpg';
-import '../App.css';
 
 const styles = theme => ({
   root: {
@@ -27,6 +26,10 @@ const styles = theme => ({
   full: {
     width: "100%",
     height: "100%"
+  },
+  home: {
+    width: "100%",
+    height: "100%",
   }
 });
 
@@ -35,12 +38,13 @@ function ImageGridList(props) {
 
   return (
     <>
-    <div className={classes.textp} style={{ backgroundColor: "black" }} >
+    <div align="right" className={classes.textp} style={{ backgroundColor: "black" }} >
     <Typography color="inherit" variant="h6">
-      Home
+      <input type="text" className="input" placeholder="Search..." />
     </Typography>
     </div>
-    <img className="home" src={mainLogo} alt="home"/>
+    <img className={classes.home} src={mainLogo} alt="home"/>
+    <style>{'body { background-color: black; }'}</style>
     </>
   );
 }
