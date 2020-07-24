@@ -23,10 +23,17 @@ const styles = theme => ({
 
 const tileData = [
   {
-    img: "https://material-ui.com/static/images/grid-list/bike.jpg",
-    title: "Bike",
+    img: "https://www.unicef.org/malaysia/sites/unicef.org.malaysia/files/styles/press_release_feature/public/beverages-carbonated-carbonated-drink-1282273.jpg",
+    title: "Drink",
     author: "danfador"
-  }
+  },
+  {
+    img: "https://images.theconversation.com/files/194291/original/file-20171113-27595-ox08qm.jpg",
+    title: "Drink",
+    author: "jill111",
+    cols: 2,
+    featured: true
+  },
 ];
 
 function DrinkList(props) {
