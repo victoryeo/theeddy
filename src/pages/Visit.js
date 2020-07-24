@@ -53,5 +53,5 @@ class  Visit extends Component {
 }
 
 export default (GoogleApiWrapper({
-  apiKey: 'AIzaSyD6-FRm_114Pe1DbY8a5q87XUVo0Yr0JbY'
+  apiKey: 'AIzaSyBD2z9YKlPukYEL4zPS_T5cBN0loscnbWE'
 })) (Visit);
