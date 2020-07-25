@@ -63,9 +63,9 @@ class Home extends Component {
   }
 
   togglePop = () => {
-   this.setState({
-    seen: !this.state.seen
-   });
+    this.setState({
+      seen: !this.state.seen
+    });
   };
 
   componentDidMount() {
