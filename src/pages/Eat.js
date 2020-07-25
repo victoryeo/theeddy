@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -6,6 +6,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import PopUpPrice from './PopupPrice';
 
 const styles = theme => ({
   root: {
@@ -77,8 +78,27 @@ const tileData = [
 
 function EatList(props) {
   const { classes } = props;
+  const [show, setShow] = useState(false);
+  const [price, setPrice] = useState(1);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  function handleClick(e) {
+    console.log(e)
+    setShow(true)
+    if (e === 'Breakfast')
+      setPrice(20)
+    else if (e === 'Tasty burger')
+      setPrice(18)
+    else if (e === 'Honey')
+      setPrice(8)      
+    else
+      setPrice(5)
+  };
 
   return (
+    <>
     <div className={classes.root}>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
         {tileData.map(tile => (
@@ -90,7 +110,9 @@ function EatList(props) {
               title={tile.title}
               titlePosition="top"
               actionIcon={
-                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
+                <IconButton aria-label={`star ${tile.title}`}
+                className={classes.icon}
+                onClick={(e)=>handleClick(tile.title)}>
                   <StarBorderIcon />
                 </IconButton>
               }
@@ -101,6 +123,8 @@ function EatList(props) {
         ))}
       </GridList>
     </div>
+    <PopUpPrice show={show} price={price} toggle={handleClose}/>
+    </>
   );
 }
 
