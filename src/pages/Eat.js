@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
   root: {
@@ -15,11 +18,19 @@ const styles = theme => ({
   },
   gridList: {
     width: 600,
-    height: 600
+    height: 660
   },
   subheader: {
     width: "100%"
-  }
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+  icon: {
+    color: 'white',
+  },
 });
 
 const tileData = [
@@ -33,7 +44,8 @@ const tileData = [
   {
     img: "https://material-ui.com/static/images/grid-list/burgers.jpg",
     title: "Tasty burger",
-    author: "director90"
+    author: "director90",
+    subfeatured: true
   },
   {
     img: "https://material-ui.com/static/images/grid-list/honey.jpg",
@@ -49,7 +61,7 @@ const tileData = [
   {
     img: "https://material-ui.com/static/images/grid-list/plant.jpg",
     title: "Water plant",
-    author: "BkrmadtyaKarki"
+    author: "BkrmadtyaKarki",
   },
   {
     img: "https://material-ui.com/static/images/grid-list/mushroom.jpg",
@@ -70,8 +82,21 @@ function EatList(props) {
     <div className={classes.root}>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.cols || 1}>
+          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1}
+           rows={tile.featured ? 2 : [(tile.subfeatured ? 2 : 1)]
+                }>
             <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              titlePosition="top"
+              actionIcon={
+                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
+                  <StarBorderIcon />
+                </IconButton>
+              }
+              actionPosition="left"
+              className={classes.titleBar}
+            />
           </GridListTile>
         ))}
       </GridList>
