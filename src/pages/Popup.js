@@ -12,19 +12,19 @@ export default class PopUp extends Component {
     this.props.toggle();
   };
 
-render() {
-  //console.log(this.props)
-  return (
-    <Modal show={true} size="sm">
-      <ModalHeader>
-        <ModalTitle>Search string</ModalTitle>
-      </ModalHeader>
-      <ModalBody>{this.props.string}</ModalBody>
-      <Modal.Footer>
-        <Button variant="primary" size="sm"  onClick={this.handleClick}>
-              Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
- }
+  render() {
+    //console.log(this.props)
+    return (
+      <Modal show={true} size="sm">
+        <ModalHeader>
+          <ModalTitle>Search string</ModalTitle>
+        </ModalHeader>
+        <ModalBody>{this.props.string}</ModalBody>
+        <Modal.Footer>
+          <Button variant="primary" size="sm"  onClick={this.handleClick}>
+                Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 }
