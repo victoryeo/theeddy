@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -7,6 +7,14 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import PopUpPrice from './PopupPrice';
+import Modal from 'react-bootstrap/Modal'
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const styles = theme => ({
   root: {
@@ -22,7 +30,10 @@ const styles = theme => ({
   },
   subheader: {
     width: "100%"
-  }
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
 });
 
 const tileData = [
@@ -42,12 +53,23 @@ const tileData = [
 
 function DrinkList(props) {
   const { classes } = props;
+  const [show, setShow] = useState(false);
+  const [price, setPrice] = useState(1);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   function handleClick(e) {
-    console.log('click')
+    console.log(e)
+    setShow(true)
+    if (e === 'Soda')
+      setPrice(2)
+    else
+      setPrice(15)
   };
 
   return (
+    <>
     <div className={classes.root}>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
       <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
@@ -61,7 +83,8 @@ function DrinkList(props) {
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${tile.title}`}
-                className={classes.icon} onClick={handleClick} >
+                className={classes.icon}
+                onClick={(e)=>handleClick(tile.title)} >
                   <InfoIcon />
                 </IconButton>
               }
@@ -70,6 +93,17 @@ function DrinkList(props) {
         ))}
       </GridList>
     </div>
+    <Modal show={show} onHide={handleClose} size="sm">
+      <ModalHeader>
+        <ModalTitle>Price</ModalTitle>
+      </ModalHeader>
+      <ModalBody>{price}</ModalBody>
+      <Modal.Footer>
+        <Button variant="secondary" size="sm"  onClick={handleClose}>
+              Close</Button>
+      </Modal.Footer>
+    </Modal>
+    </>
   );
 }
 
