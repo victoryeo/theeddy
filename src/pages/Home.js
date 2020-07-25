@@ -6,7 +6,6 @@ import GridListTile from "@material-ui/core/GridListTile";
 import Typography from '@material-ui/core/Typography';
 import mainLogo from '../assets/eddy01.jpg';
 import Popup from './Popup';
-import ReactDOM from 'react-dom';
 
 const styles = ({
   root: {
@@ -42,8 +41,6 @@ class Home extends Component {
       query: 'Eddy',
       seen: false,
     }
-    this.containerEl = document.createElement('div');
-    this.externalWindow = null;
   }
 
   handleKeyDown = (e) => {
@@ -53,7 +50,6 @@ class Home extends Component {
       this.setState({
         seen: true,
       })
-      ReactDOM.createPortal(this.props.children, this.containerEl);
     }
   }
 
@@ -73,11 +69,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    // open a new browser window and store a reference to it
-    this.externalWindow = window.open('', '', 'width=600,height=400,left=200,top=200');
 
-    // append the container <div> (that has props.children appended to it) to the body of the new window
-    //this.externalWindow.document.body.appendChild(this.containerEl);
   }
 
   render() {
@@ -93,6 +85,7 @@ class Home extends Component {
       </div>
       <style>{'body { background-color: black; }'}</style>
 
+      {this.state.seen ? <Popup toggle={this.togglePop} string={this.state.query} /> : null}
       </>
     );
   }
