@@ -15,7 +15,7 @@ const PopUpPrice = (props)=> {
   return (
     <Modal show={props.show} onHide={handleClose} size="sm">
         <ModalHeader>
-          <ModalTitle>Food Price</ModalTitle>
+          <ModalTitle>{props.name} Price</ModalTitle>
         </ModalHeader>
         <ModalBody>{props.price}</ModalBody>
         <Modal.Footer>
