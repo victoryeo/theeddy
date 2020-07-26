@@ -80,6 +80,7 @@ function EatList(props) {
   const { classes } = props;
   const [show, setShow] = useState(false);
   const [price, setPrice] = useState(1);
+  const [itemName, setItemName] = useState("Food")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -87,14 +88,26 @@ function EatList(props) {
   function handleClick(e) {
     console.log(e)
     setShow(true)
-    if (e === 'Breakfast')
+    if (e === 'Breakfast') {
       setPrice(20)
-    else if (e === 'Tasty burger')
+      setItemName('Breakfast')
+    }
+    else if (e === 'Tasty burger') {
       setPrice(18)
-    else if (e === 'Honey')
-      setPrice(8)      
-    else
+      setItemName('Tasty burger')
+    }
+    else if (e === 'Honey') {
+      setPrice(8)
+      setItemName('Honey')
+    }
+    else if (e === 'Vegetables') {
+      setPrice(7)
+      setItemName('Vegetables')
+    }
+    else {
       setPrice(5)
+      setItemName('Food')
+    }
   };
 
   return (
@@ -123,7 +136,7 @@ function EatList(props) {
         ))}
       </GridList>
     </div>
-    <PopUpPrice show={show} price={price} toggle={handleClose}/>
+    <PopUpPrice show={show} price={price} name={itemName} toggle={handleClose}/>
     </>
   );
 }
